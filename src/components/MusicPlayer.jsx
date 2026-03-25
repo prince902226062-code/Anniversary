@@ -25,11 +25,22 @@ const MusicPlayer = () => {
 
     window.addEventListener('callplay', handleCallPlay);
     window.addEventListener('callpause', handleCallPause);
+
+    // Global click listener to start music on first user interaction
+    const handleFirstInteraction = () => {
+      if (audioRef.current && isPlaying) {
+        audioRef.current.play().catch(() => {});
+        window.removeEventListener('click', handleFirstInteraction);
+      }
+    };
+    window.addEventListener('click', handleFirstInteraction);
+
     return () => {
       window.removeEventListener('callplay', handleCallPlay);
       window.removeEventListener('callpause', handleCallPause);
+      window.removeEventListener('click', handleFirstInteraction);
     };
-  }, []);
+  }, [isPlaying]);
 
   const togglePlay = () => {
     if (isPlaying) {
