@@ -38,6 +38,7 @@ function App() {
 
   return (
     <div className="bg-[#050505] min-h-screen text-white font-poppins selection:bg-pink-500/30 overflow-x-hidden">
+      <MusicPlayer />
       <AnimatePresence mode="wait">
         {!loggedIn ? (
           <motion.div key="login" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6 }}>
@@ -60,7 +61,6 @@ function App() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <MusicPlayer />
           
           <div id="hero">
             <Hero onStart={() => document.getElementById('first-connection')?.scrollIntoView({ behavior: 'smooth' })} />
