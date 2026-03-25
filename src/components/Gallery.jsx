@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import NextButton from './NextButton';
 
 const Photos = [
-  { src: '/photo1-placeholder.jpg', caption: 'Our first date' },
-  { src: '/photo2-placeholder.jpg', caption: 'That one random trip' },
-  { src: '/photo3-placeholder.jpg', caption: 'Lost in the city' },
-  { src: '/photo4-placeholder.jpg', caption: 'Memories' },
+  { src: `${import.meta.env.BASE_URL}photo1-placeholder.jpg`, caption: 'Our first date' },
+  { src: `${import.meta.env.BASE_URL}photo2-placeholder.jpg`, caption: 'That one random trip' },
+  { src: `${import.meta.env.BASE_URL}photo3-placeholder.jpg`, caption: 'Lost in the city' },
+  { src: `${import.meta.env.BASE_URL}photo4-placeholder.jpg`, caption: 'Memories' },
 ];
 
 const Gallery = ({ onNext }) => {

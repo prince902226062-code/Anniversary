@@ -56,7 +56,7 @@ const Sports2026 = ({ onNext }) => {
             <motion.img
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5 }}
-              src="/sports2026-placeholder.jpg"
+              src={`${import.meta.env.BASE_URL}sports2026-placeholder.jpg`}
               alt="Sports 2026 Together"
               className="w-full h-auto object-cover rounded-2xl aspect-[4/5] opacity-90"
             />

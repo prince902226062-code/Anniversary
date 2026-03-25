@@ -42,7 +42,7 @@ const FirstBond = ({ onNext }) => {
             <motion.img
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5 }}
-              src="/late-night-placeholder.jpg"
+              src={`${import.meta.env.BASE_URL}late-night-placeholder.jpg`}
               alt="Late Night Calls"
               className="w-full h-auto object-cover rounded-2xl aspect-[4/5] opacity-90"
             />

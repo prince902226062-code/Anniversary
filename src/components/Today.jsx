@@ -6,7 +6,7 @@ const Today = ({ onNext }) => {
   return (
     <section className="py-32 px-6 w-full min-h-[60vh] flex items-center justify-center bg-gradient-romantic relative overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <div className="absolute w-full h-full bg-[url('/noise.png')] opacity-5 mix-blend-overlay" />
+        <div className="absolute w-full h-full bg-black/20 mix-blend-overlay" />
       </div>
 
       <motion.div

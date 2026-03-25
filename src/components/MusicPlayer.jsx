@@ -44,7 +44,7 @@ const MusicPlayer = () => {
     <div className="fixed bottom-6 right-6 z-50">
       <audio
         ref={audioRef}
-        src="/music.mp3"
+        src={`${import.meta.env.BASE_URL}music.mp3`}
         loop
       />
       <motion.button
