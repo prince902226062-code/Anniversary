@@ -23,7 +23,7 @@ const KondhanaCaves = ({ onNext }) => {
             <motion.img
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5 }}
-              src={`${import.meta.env.BASE_URL}kondhana-placeholder.jpg`}
+              src="kondhana-placeholder.jpg"
               alt="Kondhana Caves Trip"
               className="w-full h-auto object-cover rounded-2xl aspect-[4/5] opacity-90"
             />

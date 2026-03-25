@@ -58,7 +58,7 @@ const Proposal = ({ onNext }) => {
             <div className="bg-white/5 border border-purple-500/20 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-4 w-full max-w-md shadow-[0_0_20px_rgba(168,85,247,0.1)] mx-auto md:mx-0">
               <audio 
                 ref={audioRef} 
-                src={`${import.meta.env.BASE_URL}call-recording.mp3`} 
+                src="call-recording.mp3" 
                 onEnded={() => { setIsPlaying(false); window.dispatchEvent(new CustomEvent('callpause')); }}
                 onTimeUpdate={handleTimeUpdate}
               />
@@ -96,7 +96,7 @@ const Proposal = ({ onNext }) => {
             <motion.img
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5 }}
-              src={`${import.meta.env.BASE_URL}proposal-placeholder.jpg`}
+              src="proposal-placeholder.jpg"
               alt="Proposal Day"
               className="w-full h-auto object-cover rounded-2xl aspect-[4/5] opacity-90"
             />
