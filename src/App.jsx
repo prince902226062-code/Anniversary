@@ -38,7 +38,6 @@ function App() {
 
   return (
     <div className="bg-[#050505] min-h-screen text-white font-poppins selection:bg-pink-500/30 overflow-x-hidden">
-      <MusicPlayer />
       <AnimatePresence mode="wait">
         {!loggedIn ? (
           <motion.div key="login" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6 }}>
@@ -46,6 +45,7 @@ function App() {
           </motion.div>
         ) : (
           <motion.div key="main" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+      <MusicPlayer />
       <AnimatePresence>
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>

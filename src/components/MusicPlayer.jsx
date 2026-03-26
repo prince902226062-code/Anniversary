@@ -5,13 +5,36 @@ import { motion } from 'framer-motion';
 const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef(null);
+  const isPlayingRef = useRef(true);
 
-  // Auto-play on mount (unmuted by default)
+  // Keep ref in sync with state
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.4;
-      audioRef.current.play().catch(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  // Auto-play on mount — this component only mounts after login,
+  // so a user gesture (the login click) has already happened.
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.volume = 0.4;
+
+    // Attempt autoplay immediately (works because user just clicked login)
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Browser still blocked — set up a one-time click listener as fallback
         setIsPlaying(false);
+        const handleFirstInteraction = () => {
+          if (audioRef.current) {
+            audioRef.current.play().then(() => {
+              setIsPlaying(true);
+            }).catch(() => { });
+          }
+          document.removeEventListener('click', handleFirstInteraction);
+        };
+        document.addEventListener('click', handleFirstInteraction);
       });
     }
 
@@ -20,33 +43,25 @@ const MusicPlayer = () => {
       if (audioRef.current) audioRef.current.volume = 0;
     };
     const handleCallPause = () => {
-      if (audioRef.current) audioRef.current.volume = 0.4;
+      if (audioRef.current && isPlayingRef.current) {
+        audioRef.current.volume = 0.4;
+      }
     };
 
     window.addEventListener('callplay', handleCallPlay);
     window.addEventListener('callpause', handleCallPause);
 
-    // Global click listener to start music on first user interaction
-    const handleFirstInteraction = () => {
-      if (audioRef.current && isPlaying) {
-        audioRef.current.play().catch(() => {});
-        window.removeEventListener('click', handleFirstInteraction);
-      }
-    };
-    window.addEventListener('click', handleFirstInteraction);
-
     return () => {
       window.removeEventListener('callplay', handleCallPlay);
       window.removeEventListener('callpause', handleCallPause);
-      window.removeEventListener('click', handleFirstInteraction);
     };
-  }, [isPlaying]);
+  }, []); // Run once on mount only
 
   const togglePlay = () => {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
-      audioRef.current.play();
+      audioRef.current.play().catch(() => { });
     }
     setIsPlaying(!isPlaying);
   };
